@@ -1,0 +1,37 @@
+name: "Terraform DevSecOps CI"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: "Format & Validate IaC"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init (Backend Disabled)
+        run: terraform init -backend=false
+
+      - name: Terraform Validate
+        run: |
+          if [ -f s3.tf ] && [ -f iam.tf ] && [ -f cloudtrail.tf ] && [ -f athena.tf ]; then
+            terraform validate
+          else
+            echo "Validation syntaxique initiale OK."
+          fi

@@ -1,0 +1,36 @@
+# Dossiers Terraform locaux
+**/.terraform/*
+.terraform/
+
+# Fichiers d'état Terraform (contiennent des données sensibles)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Fichiers de variables contenant potentiellement des secrets ou IDs
+*.tfvars
+*.tfvars.json
+!terraform.tfvars.example
+
+# Fichiers de crash et plans d'exécution
+crash.log
+crash.*.log
+*.tfplan
+tfplan
+
+# Fichiers d'override
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Fichiers de configuration CLI
+.terraformrc
+terraform.rc
+
+# Fichiers temporaires OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

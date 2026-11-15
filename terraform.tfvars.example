@@ -1,0 +1,10 @@
+# Exemple de fichier de variables Terraform
+# Copiez ce fichier vers terraform.tfvars si vous souhaitez surcharger les valeurs par défaut :
+# cp terraform.tfvars.example terraform.tfvars
+
+aws_region                = "eu-north-1"
+project_name              = "secu-cloud-g1"
+environment               = "lab"
+instance_type             = "t3.micro"
+log_retention_days        = 14
+configure_ssm_preferences = true
